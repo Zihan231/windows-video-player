@@ -280,8 +280,15 @@ public partial class MainWindow : Window
         var d = new OpenFileDialog { Filter = "Subtitles|*.srt;*.ass;*.ssa;*.vtt;*.sub;*.sup|All files|*.*", Multiselect = true, Title = "Select 1 or 2 subtitle files (first = Subtitle 1, second = Subtitle 2)" };
         if (d.ShowDialog() != true) return;
         var files = d.FileNames.Take(2).ToArray();
-        AddSubtitle(files[0], false);
-        if (files.Length > 1) AddSubtitle(files[1], true);
+        static bool Empty(string id) => string.IsNullOrEmpty(id) || id == "no";
+        bool s1Empty = Empty(Player.Get("sid")), s2Empty = Empty(Player.Get("secondary-sid"));
+        if (files.Length == 2 || s1Empty)
+        {
+            // two files -> Sub 1 + Sub 2; one file and Sub 1 is free -> Sub 1
+            AddSubtitle(files[0], false);
+            if (files.Length > 1) AddSubtitle(files[1], true);
+        }
+        else AddSubtitle(files[0], true);   // Sub 1 already has one -> this goes to Sub 2 (replaces it if both are taken)
     }
 
     void AddSubtitle(string path, bool second)
