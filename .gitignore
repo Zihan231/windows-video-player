@@ -25,3 +25,6 @@ data/
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+# libmpv is 118 MB (over GitHub's 100 MB limit) - download it, don't commit it
+src/native/libmpv-2.dll
