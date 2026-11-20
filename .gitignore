@@ -1,0 +1,27 @@
+# Build output
+bin/
+obj/
+publish/
+publish_tmp/
+*_wpftmp.csproj
+
+# Release artifacts
+dist/
+*.zip
+
+# IDE / user files
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Local player data (settings, resume positions)
+data/
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# OS junk
+Thumbs.db
+Desktop.ini
+.DS_Store
