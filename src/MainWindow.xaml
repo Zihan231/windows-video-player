@@ -52,7 +52,7 @@
         <DockPanel Margin="0,0,0,4">
           <TextBlock x:Name="TimeL" Text="0:00" Foreground="{StaticResource Dim}" Width="58" VerticalAlignment="Center"/>
           <TextBlock x:Name="TimeR" Text="0:00" Foreground="{StaticResource Dim}" Width="58" TextAlignment="Right" DockPanel.Dock="Right" VerticalAlignment="Center"/>
-          <Slider x:Name="Seek" Minimum="0" Maximum="1000" Height="22" VerticalAlignment="Center" IsMoveToPointEnabled="True"
+          <Slider x:Name="Seek" Minimum="0" Maximum="1000" Height="22" VerticalAlignment="Center" IsMoveToPointEnabled="False"
                   PreviewMouseLeftButtonDown="Seek_Down" PreviewMouseLeftButtonUp="Seek_Up" PreviewMouseMove="Seek_Move"/>
         </DockPanel>
         <DockPanel>
