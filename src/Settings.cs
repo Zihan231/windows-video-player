@@ -66,7 +66,7 @@ public class AppSettings
             }
             catch
             {
-                return System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "XRPlayer", "settings.json");
+                return System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WinPlayer", "settings.json");
             }
         }
     }

@@ -53,7 +53,7 @@ public partial class MainWindow : Window
     void OnLoaded(object s, RoutedEventArgs e)
     {
         try { Player = new Mpv(Host.Handle); }
-        catch (Exception ex) { MessageBox.Show("Could not start the playback engine (libmpv-2.dll):\n" + ex.Message, "XR Player"); Close(); return; }
+        catch (Exception ex) { MessageBox.Show("Could not start the playback engine (libmpv-2.dll):\n" + ex.Message, "WinPlayer"); Close(); return; }
 
         Player.Option("hwdec", Cfg.Hwdec);
         Player.Set("hwdec", Cfg.Hwdec);
@@ -175,7 +175,7 @@ public partial class MainWindow : Window
                 break;
             case "sub-text": Subs?.SetText(1, v); break;
             case "secondary-sub-text": Subs?.SetText(2, v); break;
-            case "media-title": if (!string.IsNullOrEmpty(v)) { NowPlaying.Text = v; this.Title = v + " — XR Player"; } break;
+            case "media-title": if (!string.IsNullOrEmpty(v)) { NowPlaying.Text = v; this.Title = v + " — WinPlayer"; } break;
             case "eof-reached":
                 if (v == "yes" && Cfg.AutoPlayNext && !Cfg.Loop && index + 1 < playlist.Count) PlayIndex(index + 1);
                 break;

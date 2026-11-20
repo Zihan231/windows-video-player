@@ -21,7 +21,7 @@ public class SettingsWindow : Window
     public SettingsWindow(MainWindow m)
     {
         main = m; cfg = m.Cfg; mpv = m.Player;
-        Title = "Settings — XR Player"; Width = 860; Height = 720; MinWidth = 640;
+        Title = "Settings — WinPlayer"; Width = 860; Height = 720; MinWidth = 640;
         WindowStartupLocation = WindowStartupLocation.CenterOwner;
         Background = (Brush)Application.Current.FindResource("Bg");
         Foreground = Fg;
@@ -149,7 +149,7 @@ public class SettingsWindow : Window
         {
             var n = new AppSettings();
             cfg.Sub1 = n.Sub1; cfg.Sub2 = n.Sub2; cfg.Layout = n.Layout; cfg.Sub2OnTop = n.Sub2OnTop; cfg.StackGap = n.StackGap;
-            cfg.Save(); MessageBox.Show(this, "Subtitle settings reset. Reopen this window to see them.", "XR Player"); main.Subs.Render(); Close();
+            cfg.Save(); MessageBox.Show(this, "Subtitle settings reset. Reopen this window to see them.", "WinPlayer"); main.Subs.Render(); Close();
         };
         p.Children.Add(reset);
         return p;
