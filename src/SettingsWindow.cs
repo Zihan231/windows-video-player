@@ -12,7 +12,7 @@ public class SettingsWindow : Window
     readonly AppSettings cfg;
     readonly Mpv mpv;
     readonly TabControl tabs = new();
-    ComboBox layoutBox; CheckBox sub2Top; bool syncing;
+    ComboBox layoutBox; bool syncing;
 
     static readonly Brush Fg = (Brush)Application.Current.FindResource("Fg");
     static readonly Brush Dim = (Brush)Application.Current.FindResource("Dim");
@@ -42,7 +42,6 @@ public class SettingsWindow : Window
     {
         syncing = true;
         foreach (ComboBoxItem it in layoutBox.Items) if ((string)it.Tag == cfg.Layout) layoutBox.SelectedItem = it;
-        sub2Top.IsChecked = cfg.Sub2OnTop;
         syncing = false;
     }
 
@@ -227,8 +226,6 @@ public class SettingsWindow : Window
             cfg.Layout = (string)it.Tag; main.Subs.Render();
         };
         p.Children.Add(Row("Layout", layoutBox));
-        sub2Top = Check("Stacked: show Subtitle 2 above Subtitle 1", cfg.Sub2OnTop, v => { if (!syncing) { cfg.Sub2OnTop = v; main.Subs.Render(); } });
-        p.Children.Add(sub2Top);
         p.Children.Add(Row("Gap between the two (px)", Slide(0, 60, cfg.StackGap, v => { cfg.StackGap = (int)v; main.Subs.Render(); })));
         p.Children.Add(Check("Use native rendering (keeps fancy ASS styling / picture subtitles; disables the custom styles below)", cfg.NativeSubRendering, v =>
         {

@@ -78,8 +78,8 @@ public class SubtitleRenderer
         if (cfg.Layout == "Stacked")
         {
             // One bottom-anchored block: both subtitles share a column; order is configurable.
-            var first = cfg.Sub2OnTop ? (cfg.Sub2, b) : (cfg.Sub1, a);
-            var second = cfg.Sub2OnTop ? (cfg.Sub1, a) : (cfg.Sub2, b);
+            var first = (cfg.Sub1, a);    // Subtitle 1 always on top, Subtitle 2 right below it
+            var second = (cfg.Sub2, b);
             var sb = new StringBuilder();
             var ref1 = cfg.Sub1;
             int x = ref1.Align == 1 ? (int)(W * ref1.PosX / 100.0) : ref1.Align == 0 ? (int)(W * 0.05) : (int)(W * 0.95);

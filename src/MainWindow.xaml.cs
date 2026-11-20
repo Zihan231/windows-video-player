@@ -275,6 +275,15 @@ public partial class MainWindow : Window
         if (d.ShowDialog() == true) AddSubtitle(d.FileName, (string)((Button)s).Tag == "2");
     }
 
+    void AddTwoSubs_Click(object s, RoutedEventArgs e)
+    {
+        var d = new OpenFileDialog { Filter = "Subtitles|*.srt;*.ass;*.ssa;*.vtt;*.sub;*.sup|All files|*.*", Multiselect = true, Title = "Select 1 or 2 subtitle files (first = Subtitle 1, second = Subtitle 2)" };
+        if (d.ShowDialog() != true) return;
+        var files = d.FileNames.Take(2).ToArray();
+        AddSubtitle(files[0], false);
+        if (files.Length > 1) AddSubtitle(files[1], true);
+    }
+
     void AddSubtitle(string path, bool second)
     {
         // mpv auto-selects a newly added track as the primary one; remember what was active so we can restore it.

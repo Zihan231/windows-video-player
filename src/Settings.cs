@@ -32,7 +32,7 @@ public class AppSettings
 {
     // "Stacked" = both in one block, "TopBottom" = sub1 bottom + sub2 top, "Custom" = free positions
     public string Layout { get; set; } = "Stacked";
-    public bool Sub2OnTop { get; set; } = true;       // stacked order
+    public bool Sub2OnTop { get; set; } = false;       // stacked order
     public int StackGap { get; set; } = 6;            // px between the two blocks
     public bool NativeSubRendering { get; set; } = false;
     public SubStyle Sub1 { get; set; } = new SubStyle { Color = "#FFFFFF", PosY = 92 };

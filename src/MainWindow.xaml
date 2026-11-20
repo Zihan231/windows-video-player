@@ -70,7 +70,7 @@
             <ComboBox x:Name="AudioBox" Width="130" Margin="0,0,8,0" SelectionChanged="Audio_Changed" ToolTip="Audio track"/>
             <Button x:Name="SubBtn" Style="{StaticResource IconBtn}" Content="&#xED1E;" ToolTip="Subtitles (V)" Click="Sub_Click"/>
             <Button Style="{StaticResource IconBtn}" Content="&#xE8FD;" ToolTip="Playlist (L)" Click="ListToggle_Click"/>
-            <Button Style="{StaticResource IconBtn}" Content="&#xE722;" ToolTip="Screenshot (S)" Click="Shot_Click"/>
+            <Button Style="{StaticResource IconBtn}" Content="&#xE710;" ToolTip="Quick add 2 subtitles (pick both files at once)" Click="AddTwoSubs_Click"/>
             <Button Style="{StaticResource IconBtn}" Content="&#xE713;" ToolTip="Settings (Ctrl+,)" Click="Settings_Click"/>
             <Button Style="{StaticResource IconBtn}" Content="&#xE740;" ToolTip="Fullscreen (F)" Click="Full_Click"/>
           </StackPanel>
@@ -84,6 +84,7 @@
       <Border Background="{StaticResource Panel}" BorderBrush="{StaticResource Hover}" BorderThickness="1" CornerRadius="12" Padding="16" Width="360" Margin="8">
         <StackPanel>
           <TextBlock Text="Subtitles" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,10"/>
+          <Button Content="Add 2 subtitle files at once…" Style="{StaticResource TextBtn}" Margin="0,0,0,10" Click="AddTwoSubs_Click"/>
           <TextBlock Text="Subtitle 1" Foreground="{StaticResource Dim}"/>
           <DockPanel Margin="0,2,0,8">
             <Button Content="+ file" Style="{StaticResource TextBtn}" DockPanel.Dock="Right" Margin="6,0,0,0" Tag="1" Click="AddSub_Click"/>
