@@ -89,14 +89,14 @@ public partial class MainWindow : Window
     {
         ("SPACE","pause"),("LEFT","left"),("RIGHT","right"),("Shift+LEFT","bigleft"),("Shift+RIGHT","bigright"),
         ("UP","volup"),("DOWN","voldown"),("f","fullscreen"),("ESC","esc"),("m","mute"),("v","subs"),("l","list"),
-        ("s","shot"),("n","next"),("p","prev"),("]","faster"),("[","slower"),("BS","speed1"),(".","framestep"),(",","frameback"),
+        ("s","shot"),("n","next"),("p","prev"),("]","faster"),("[","slower"),("+","faster"),("=","faster"),("-","slower"),("KP_ADD","faster"),("KP_SUBTRACT","slower"),("BS","speed1"),(".","framestep"),(",","frameback"),
         ("z","d1minus"),("x","d1plus"),("c","d2minus"),("b","d2plus"),("Ctrl+o","open"),("Ctrl+,","settings"),
     };
     static readonly Dictionary<Key, string> WpfKeys = new()
     {
         [Key.Space]="pause",[Key.Left]="left",[Key.Right]="right",[Key.Up]="volup",[Key.Down]="voldown",[Key.F]="fullscreen",[Key.Escape]="esc",
         [Key.M]="mute",[Key.V]="subs",[Key.L]="list",[Key.S]="shot",[Key.N]="next",[Key.P]="prev",[Key.OemCloseBrackets]="faster",
-        [Key.OemOpenBrackets]="slower",[Key.Back]="speed1",[Key.OemPeriod]="framestep",[Key.OemComma]="frameback",
+        [Key.OemOpenBrackets]="slower",[Key.OemPlus]="faster",[Key.Add]="faster",[Key.OemMinus]="slower",[Key.Subtract]="slower",[Key.Back]="speed1",[Key.OemPeriod]="framestep",[Key.OemComma]="frameback",
         [Key.Z]="d1minus",[Key.X]="d1plus",[Key.C]="d2minus",[Key.B]="d2plus",
     };
 
@@ -137,8 +137,8 @@ public partial class MainWindow : Window
             case "shot": Shot_Click(null, null); break;
             case "next": Next_Click(null, null); break;
             case "prev": Prev_Click(null, null); break;
-            case "faster": SetSpeed(Player.GetD("speed", 1) * 1.1); break;
-            case "slower": SetSpeed(Player.GetD("speed", 1) / 1.1); break;
+            case "faster": SetSpeed(Math.Round(Player.GetD("speed", 1) + 0.25, 2)); break;
+            case "slower": SetSpeed(Math.Round(Player.GetD("speed", 1) - 0.25, 2)); break;
             case "speed1": SetSpeed(1); break;
             case "framestep": Player.Command("frame-step"); break;
             case "frameback": Player.Command("frame-back-step"); break;
@@ -417,6 +417,12 @@ public partial class MainWindow : Window
         dragging = true; Seek.CaptureMouse();
         Seek.Value = SeekRatio(e) * Seek.Maximum;
         e.Handled = true;
+    }
+
+    // show the time under the thumb while scrubbing
+    void Seek_ValueChanged(object s, RoutedPropertyChangedEventArgs<double> e)
+    {
+        if (dragging && duration > 0) TimeL.Text = Fmt(e.NewValue / Seek.Maximum * duration);
     }
 
     void Seek_Move(object s, MouseEventArgs e)
